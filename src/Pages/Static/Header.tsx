@@ -10,10 +10,11 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         
         {/* Logo */}
+        <a href="/">
         <div className="flex items-center gap-2">
             <img src={logo} alt=""  width={35} height={35} />
           <span className="text-[35px] font-bold text-blue-600">Decof</span>
-        </div>
+        </div></a>
 
         {/* Desktop Nav */}
        <div className="flex items-center gap-10" >
@@ -22,7 +23,7 @@ const Header = () => {
             Services <FiChevronDown />
           </div>
           <a href="#" className="hover:text-blue-600">Portfolio</a>
-          <a href="#" className="hover:text-blue-600">About Us</a>
+          <a href="/about" className="hover:text-blue-600">About Us</a>
           <a href="#" className="hover:text-blue-600">Contact</a>
         </nav>
 
@@ -45,19 +46,20 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="md:hidden bg-white px-6 pb-6 space-y-4 text-gray-700 font-medium">
-          <div className="flex items-center gap-1">
-            Services <FiChevronDown />
-          </div>
-          <a href="#" className="block">Portfolio</a>
-          <a href="#" className="block">About Us</a>
-          <a href="#" className="block">Contact</a>
+  <div className="absolute top-[80px] left-0 w-full bg-white md:hidden px-6 py-6 space-y-4 text-gray-700 font-medium shadow-md">
+    <div className="flex items-center gap-1">
+      Services <FiChevronDown />
+    </div>
+    <a href="#" className="block">Portfolio</a>
+    <a href="/about" className="block">About Us</a>
+    <a href="#" className="block">Contact</a>
 
-          <button className="w-full mt-4 px-5 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold">
-            Get a Quote
-          </button>
-        </div>
-      )}
+    <button className="w-full mt-4 px-5 py-2 rounded-lg bg-gradient-to-b from-[#1F58B9] to-[#21C0E6] text-white font-semibold">
+      Get a Quote
+    </button>
+  </div>
+)}
+
     </header>
   );
 };
