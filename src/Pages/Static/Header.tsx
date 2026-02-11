@@ -1,39 +1,95 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { FiMenu, FiX, FiChevronDown } from "react-icons/fi";
-import logo from "../../assets/logo.png"
+import logo from "../../assets/logo.png";
 
 const Header = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false); // mobile menu
+  const [servicesOpen, setServicesOpen] = useState(false); // services dropdown
+
+  // Close dropdowns & optionally mobile menu
+  const closeDropdowns = () => {
+    setServicesOpen(false);
+    setOpen(false);
+  };
 
   return (
-    <header className="h-[80px] w-full bg-white shadow-sm">
+    <header className="h-[80px] w-full bg-white shadow-sm relative">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        
+
         {/* Logo */}
-        <a href="/">
-        <div className="flex items-center gap-2">
-            <img src={logo} alt=""  width={35} height={35} />
+        <Link to="/" className="flex items-center gap-2" onClick={closeDropdowns}>
+          <img src={logo} alt="" width={35} height={35} />
           <span className="text-[35px] font-bold text-blue-600">Decof</span>
-        </div></a>
+        </Link>
 
         {/* Desktop Nav */}
-       <div className="flex items-center gap-10" >
-           <nav className="hidden md:flex items-center gap-8 text-gray-700 font-medium">
-          <div className="flex items-center gap-1 cursor-pointer hover:text-blue-600">
-            Services <FiChevronDown />
-          </div>
-          <a href="#" className="hover:text-blue-600">Portfolio</a>
-          <a href="/about" className="hover:text-blue-600">About Us</a>
-          <a href="#" className="hover:text-blue-600">Contact</a>
-        </nav>
+        <div className="flex items-center gap-10">
+          <nav className="hidden md:flex items-center gap-8 text-gray-700 font-medium relative">
 
-        {/* CTA Button */}
-        <div className="hidden md:block">
-          <button className="px-5 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold hover:opacity-90 transition">
-            Get a Quote
-          </button>
+            {/* Services Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setServicesOpen(!servicesOpen)}
+                className="flex items-center gap-1 hover:text-blue-600"
+              >
+                Services <FiChevronDown />
+              </button>
+
+              {servicesOpen && (
+                <div className="absolute top-10 left-0 w-56 bg-white rounded-xl shadow-lg py-4 z-50">
+                  <Link
+                    to="/services/corporateprinting"
+                    className="block px-6 py-2 hover:bg-gray-100"
+                    onClick={closeDropdowns}
+                  >
+                    Corporate Printing
+                  </Link>
+                  <Link
+                    to="/branding"
+                    className="block px-6 py-2 hover:bg-gray-100"
+                    onClick={closeDropdowns}
+                  >
+                    Branding & Merchandise
+                  </Link>
+                  <Link
+                    to="/large-format"
+                    className="block px-6 py-2 hover:bg-gray-100"
+                    onClick={closeDropdowns}
+                  >
+                    Large Format & Singnage
+                  </Link>
+                  <Link
+                    to="/design-services"
+                    className="block px-6 py-2 hover:bg-gray-100"
+                    onClick={closeDropdowns}
+                  >
+                    Brand Design studio
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Other Links */}
+            <Link to="#" className="hover:text-blue-600" onClick={closeDropdowns}>
+              Portfolio
+            </Link>
+            <Link to="/about" className="hover:text-blue-600" onClick={closeDropdowns}>
+              About Us
+            </Link>
+            <Link to="#" className="hover:text-blue-600" onClick={closeDropdowns}>
+              Contact
+            </Link>
+
+          </nav>
+
+          {/* CTA Button */}
+          <div className="hidden md:block">
+            <button className="px-5 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold hover:opacity-90 transition">
+              Get a Quote
+            </button>
+          </div>
         </div>
-       </div>
 
         {/* Mobile Menu Button */}
         <button
@@ -46,20 +102,52 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {open && (
-  <div className="absolute top-[80px] left-0 w-full bg-white md:hidden px-6 py-6 space-y-4 text-gray-700 font-medium shadow-md">
-    <div className="flex items-center gap-1">
-      Services <FiChevronDown />
-    </div>
-    <a href="#" className="block">Portfolio</a>
-    <a href="/about" className="block">About Us</a>
-    <a href="#" className="block">Contact</a>
+        <div className="absolute top-[80px] left-0 w-full bg-white md:hidden px-6 py-6 space-y-4 text-gray-700 font-medium shadow-md">
 
-    <button className="w-full mt-4 px-5 py-2 rounded-lg bg-gradient-to-b from-[#1F58B9] to-[#21C0E6] text-white font-semibold">
-      Get a Quote
-    </button>
-  </div>
-)}
+          {/* Mobile Services Dropdown */}
+          <div>
+            <button
+              onClick={() => setServicesOpen(!servicesOpen)}
+              className="flex items-center gap-1"
+            >
+              Services <FiChevronDown />
+            </button>
 
+            {servicesOpen && (
+              <div className="mt-3 ml-4 space-y-2">
+                <Link to="/services/corporateprinting" className="block" onClick={closeDropdowns}>
+                  Corporate Printing
+                </Link>
+                <Link to="/branding" className="block" onClick={closeDropdowns}>
+                  Branding & Merchandise
+                </Link>
+                <Link to="/large-format" className="block" onClick={closeDropdowns}>
+                  Large Format & Singnage
+                </Link>
+                <Link to="/design-services" className="block" onClick={closeDropdowns}>
+                  Brand Design studio
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Other Links */}
+          <Link to="#" className="block" onClick={closeDropdowns}>
+            Portfolio
+          </Link>
+          <Link to="/about" className="block" onClick={closeDropdowns}>
+            About Us
+          </Link>
+          <Link to="#" className="block" onClick={closeDropdowns}>
+            Contact
+          </Link>
+
+          {/* Mobile CTA */}
+          <button className="w-full mt-4 px-5 py-2 rounded-lg bg-gradient-to-b from-[#1F58B9] to-[#21C0E6] text-white font-semibold">
+            Get a Quote
+          </button>
+        </div>
+      )}
     </header>
   );
 };
