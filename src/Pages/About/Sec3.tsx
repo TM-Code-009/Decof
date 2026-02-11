@@ -1,4 +1,3 @@
-import {FiBarChart2 } from "react-icons/fi";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { LuLibrary } from "react-icons/lu";
 import { PiClockCounterClockwiseBold } from "react-icons/pi";
