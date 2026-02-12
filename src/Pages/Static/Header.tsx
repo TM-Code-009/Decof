@@ -46,14 +46,14 @@ const Header = () => {
                     Corporate Printing
                   </Link>
                   <Link
-                    to="/branding"
+                    to="/services/branding&merchandise"
                     className="block px-6 py-2 hover:bg-gray-100"
                     onClick={closeDropdowns}
                   >
                     Branding & Merchandise
                   </Link>
                   <Link
-                    to="/large-format"
+                    to="/services/largeformat&singage"
                     className="block px-6 py-2 hover:bg-gray-100"
                     onClick={closeDropdowns}
                   >
@@ -118,10 +118,10 @@ const Header = () => {
                 <Link to="/services/corporateprinting" className="block" onClick={closeDropdowns}>
                   Corporate Printing
                 </Link>
-                <Link to="/branding" className="block" onClick={closeDropdowns}>
+                <Link to="/services/branding&merchandise" className="block" onClick={closeDropdowns}>
                   Branding & Merchandise
                 </Link>
-                <Link to="/large-format" className="block" onClick={closeDropdowns}>
+                <Link to="/services/largeformat&singage" className="block" onClick={closeDropdowns}>
                   Large Format & Singnage
                 </Link>
                 <Link to="/design-services" className="block" onClick={closeDropdowns}>
